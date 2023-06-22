@@ -1,5 +1,4 @@
 import unittest
-import webbrowser
 from unittest.mock import patch, MagicMock
 
 from src.html_renderer.exceptions import BrowserNotFoundException
@@ -21,7 +20,7 @@ class RendererTestCase(unittest.TestCase):
             _handle_open_from_regular_file(self.html_string, self.save_path)
             mock_open.assert_called_once_with(self.save_path, "w")
             mock_file.write.assert_called_once_with(self.html_string)
-            mock_webbrowser_open.assert_called_once_with(f"file://{mock_file.name}")
+            mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_handle_open_from_temp(self):
         with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, \
@@ -32,7 +31,7 @@ class RendererTestCase(unittest.TestCase):
             _handle_open_from_temp(self.html_string)
             mock_tempfile.assert_called_once_with(mode="w", delete=True, suffix=".html")
             mock_file.write.assert_called_once_with(self.html_string)
-            mock_webbrowser_open.assert_called_once_with(f"file://{mock_file.name}")
+            mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_render_in_browser_save_path(self):
         with patch("builtins.open", create=True) as mock_open, \
@@ -43,7 +42,7 @@ class RendererTestCase(unittest.TestCase):
             render_in_browser(self.html_string, save_path=self.save_path)
             mock_open.assert_called_once_with(self.save_path, "w")
             mock_file.write.assert_called_once_with(self.html_string)
-            mock_webbrowser_open.assert_called_once_with(f"file://{mock_file.name}")
+            mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_render_in_browser_temp_file(self):
         with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, \
@@ -54,7 +53,7 @@ class RendererTestCase(unittest.TestCase):
             render_in_browser(self.html_string)
             mock_tempfile.assert_called_once_with(mode="w", delete=True, suffix=".html")
             mock_file.write.assert_called_once_with(self.html_string)
-            mock_webbrowser_open.assert_called_once_with(f"file://{mock_file.name}")
+            mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_render_in_browser_browser_not_found(self):
         with patch("tempfile.NamedTemporaryFile", create=False):

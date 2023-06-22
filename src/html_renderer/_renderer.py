@@ -1,5 +1,7 @@
+import time
 import webbrowser
 import tempfile
+import os
 
 from .exceptions import BrowserNotFoundException, UnknownBrowserException
 
@@ -23,8 +25,8 @@ def _open_in_browser(file_path: str, browser: str | None = None) -> None:
             raise UnknownBrowserException(e)
     else:
         client = webbrowser
-    if not file_path.startswith("file://"):
-        file_path = f"file://{file_path}"
+    if not file_path.startswith("file:///"):
+        file_path = f"file:///{file_path}"
     client.open_new(file_path)
 
 
@@ -38,11 +40,16 @@ def _handle_open_from_temp(html_string: str, browser: str | None = None) -> None
             If provided, the HTML content will be opened using the specified browser.
             If not provided or set to None, the default browser will be used.
     """
-    with tempfile.NamedTemporaryFile(mode='w', delete=True, suffix='.html') as tmp_file:
+
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.html') as tmp_file:
+        # Autodelete is set to false here for compatibility with windows
         tmp_file.write(html_string)
         file_path = tmp_file.name
-        _open_in_browser(file_path, browser)
         tmp_file.close()
+        _open_in_browser(file_path, browser)
+        time.sleep(3)
+        # Using unlink to clean up the file
+        os.unlink(tmp_file.name)
 
 
 def _handle_open_from_regular_file(html_string: str, save_path: str, browser: str | None = None) -> None:
