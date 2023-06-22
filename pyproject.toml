@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "html_renderer"
+version = "0.1.0"
+authors = [
+  { name="Bartlomiej Mika", email="bmika1@icloud.com" },
+]
+description = "Python library that provides a simple way to render HTML content in a web browser."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/bmika1/html-renderer"
+"Bug Tracker" = "https://github.com/bmika1/html-renderer/issues"
