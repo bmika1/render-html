@@ -9,6 +9,8 @@ You can install `html_renderer` using pip:
 
 pip install html-renderer
 
+NOTE: the library requires Python 3.10 or newer
+
 ## Usage
 
 ```python

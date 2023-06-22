@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "html_renderer"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Bartlomiej Mika", email="bmika1@icloud.com" },
 ]

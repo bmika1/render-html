@@ -1,7 +1,7 @@
 import webbrowser
 import tempfile
 
-from src.html_renderer.exceptions import BrowserNotFoundException, UnknownBrowserException
+from .exceptions import BrowserNotFoundException, UnknownBrowserException
 
 
 def _open_in_browser(file_path: str, browser: str | None = None) -> None:
