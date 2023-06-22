@@ -2,7 +2,7 @@ import unittest
 import webbrowser
 from unittest.mock import patch, MagicMock
 
-from src.html_renderer._exceptions import BrowserNotFoundException
+from src.html_renderer.exceptions import BrowserNotFoundException
 from src.html_renderer._renderer import render_in_browser, _handle_open_from_regular_file, _handle_open_from_temp
 
 

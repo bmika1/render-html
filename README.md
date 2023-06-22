@@ -35,7 +35,7 @@ Render the HTML content in a web browser.
   If not provided or set to `None`, a temporary file will be created in the operating 
   system's default temporary directory. The temporary file will be removed once the rendering 
   is complete.
-- browser (str, optional): The name of the web browser to use (i.e., "chrome", "safari").
+- `browser` (str, optional): The name of the web browser to use (i.e., "chrome", "safari").
   If provided, the HTML content will be opened using the specified browser.
   If not provided or set to None, the default browser will be used.
 
