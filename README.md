@@ -1,7 +1,9 @@
 # html_renderer
 
-`html_renderer` is a Python library that provides a simple way to render HTML content in a web browser. It allows you to open HTML content directly from a string or save it to a file and open it from the file. You can also specify the name of a browser to use a non-default browser. Please refer to [webbrowser documentation](https://docs.python.org/3/library/webbrowser.html) for the complete list of predefined browsers.
-This library is useful for quickly visualizing and testing HTML content in a web browser environment.
+`html_renderer` is a Python library that provides a simple way to render HTML content in a web browser. 
+It allows you to open HTML content directly from a string or save it to a file and open it from the file.
+You can also specify the name of a browser to use a non-default browser. Please refer to [webbrowser documentation](https://docs.python.org/3/library/webbrowser.html) for the complete list of predefined browsers.
+This library is especially useful for quickly visualizing and testing HTML content in a web browser environment.
 
 ## Installation
 
