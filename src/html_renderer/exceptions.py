@@ -5,4 +5,6 @@ class BrowserNotFoundException(Exception):
 
 class UnknownBrowserException(Exception):
     def __init__(self, e: Exception):
-        super(UnknownBrowserException, self).__init__(f"Unknown webbrowser exception: {str(e)}")
+        super(UnknownBrowserException, self).__init__(
+            f"Unknown webbrowser exception: {str(e)}"
+        )

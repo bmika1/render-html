@@ -1,3 +1,4 @@
+import platform
 import time
 import webbrowser
 import tempfile
@@ -40,19 +41,25 @@ def _handle_open_from_temp(html_string: str, browser: str | None = None) -> None
             If provided, the HTML content will be opened using the specified browser.
             If not provided or set to None, the default browser will be used.
     """
+    # Set delete parameter depending on the platform
+    autodelete = platform.system() != "Windows"
 
-    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.html') as tmp_file:
-        # Autodelete is set to false here for compatibility with windows
+    with tempfile.NamedTemporaryFile(
+        mode="w", delete=autodelete, suffix=".html"
+    ) as tmp_file:
         tmp_file.write(html_string)
         file_path = tmp_file.name
-        tmp_file.close()
         _open_in_browser(file_path, browser)
+        # Adding a short sleep so that the file does not get cleaned
+        # up immediately in case the browser takes a while to boot.
         time.sleep(3)
-        # Using unlink to clean up the file
-        os.unlink(tmp_file.name)
+        if not autodelete:
+            os.unlink(file_path)  # Cleaning up the file in case of Windows
 
 
-def _handle_open_from_regular_file(html_string: str, save_path: str, browser: str | None = None) -> None:
+def _handle_open_from_regular_file(
+    html_string: str, save_path: str, browser: str | None = None
+) -> None:
     """
     Handle opening HTML content from a regular file in a web browser.
 
@@ -63,12 +70,14 @@ def _handle_open_from_regular_file(html_string: str, save_path: str, browser: st
             If provided, the HTML content will be opened using the specified browser.
             If not provided or set to None, the default browser will be used.
     """
-    with open(save_path, 'w') as f:
+    with open(save_path, "w") as f:
         f.write(html_string)
     _open_in_browser(save_path, browser)
 
 
-def render_in_browser(html_string: str, save_path: str | None = None, browser: str | None = None) -> None:
+def render_in_browser(
+    html_string: str, save_path: str | None = None, browser: str | None = None
+) -> None:
     """
     Render the HTML content in a web browser.
 

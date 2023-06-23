@@ -2,7 +2,11 @@ import unittest
 from unittest.mock import patch, MagicMock
 
 from src.html_renderer.exceptions import BrowserNotFoundException
-from src.html_renderer._renderer import render_in_browser, _handle_open_from_regular_file, _handle_open_from_temp
+from src.html_renderer._renderer import (
+    render_in_browser,
+    _handle_open_from_regular_file,
+    _handle_open_from_temp,
+)
 
 
 class RendererTestCase(unittest.TestCase):
@@ -13,7 +17,9 @@ class RendererTestCase(unittest.TestCase):
         cls.temp_path = "/path/to/temp/file.html"
 
     def test_handle_open_from_regular_file(self):
-        with patch("builtins.open", create=True) as mock_open, patch("webbrowser.open_new") as mock_webbrowser_open:
+        with patch("builtins.open", create=True) as mock_open, patch(
+            "webbrowser.open_new"
+        ) as mock_webbrowser_open:
             mock_file = MagicMock()
             mock_file.name = self.save_path
             mock_open.return_value.__enter__.return_value = mock_file
@@ -23,8 +29,9 @@ class RendererTestCase(unittest.TestCase):
             mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_handle_open_from_temp(self):
-        with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, \
-                patch("webbrowser.open_new") as mock_webbrowser_open:
+        with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, patch(
+            "webbrowser.open_new"
+        ) as mock_webbrowser_open:
             mock_file = MagicMock()
             mock_tempfile.return_value.__enter__.return_value = mock_file
             mock_file.name = self.temp_path
@@ -34,8 +41,9 @@ class RendererTestCase(unittest.TestCase):
             mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_render_in_browser_save_path(self):
-        with patch("builtins.open", create=True) as mock_open, \
-                patch("webbrowser.open_new") as mock_webbrowser_open:
+        with patch("builtins.open", create=True) as mock_open, patch(
+            "webbrowser.open_new"
+        ) as mock_webbrowser_open:
             mock_file = MagicMock()
             mock_file.name = self.save_path
             mock_open.return_value.__enter__.return_value = mock_file
@@ -45,8 +53,9 @@ class RendererTestCase(unittest.TestCase):
             mock_webbrowser_open.assert_called_once_with(f"file:///{mock_file.name}")
 
     def test_render_in_browser_temp_file(self):
-        with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, \
-                patch("webbrowser.open_new") as mock_webbrowser_open:
+        with patch("tempfile.NamedTemporaryFile", create=True) as mock_tempfile, patch(
+            "webbrowser.open_new"
+        ) as mock_webbrowser_open:
             mock_file = MagicMock()
             mock_tempfile.return_value.__enter__.return_value = mock_file
             mock_file.name = self.temp_path
