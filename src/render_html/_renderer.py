@@ -50,10 +50,10 @@ def _handle_open_from_temp(html_string: str, browser: str | None = None) -> None
         tmp_file.write(html_string)
         file_path = tmp_file.name
         if autodelete:
+            _open_in_browser(file_path, browser)
             # Adding a short sleep so that the file does not get cleaned
             # up immediately in case the browser takes a while to boot.
             time.sleep(3)
-            _open_in_browser(file_path, browser)
     if not autodelete:
         _open_in_browser(file_path, browser)
         time.sleep(3)
