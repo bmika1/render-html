@@ -100,5 +100,3 @@ def render_in_browser(
         _handle_open_from_regular_file(html_string, save_path, browser)
     else:
         _handle_open_from_temp(html_string, browser)
-
-        
