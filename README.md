@@ -1,22 +1,22 @@
-# html_renderer
+# render_html
 
-`html_renderer` is a Python library that provides a simple way to render HTML content in a web browser. 
+`render_html` is a Python library that provides a simple way to render HTML content in a web browser. 
 It allows you to open HTML content directly from a string or save it to a file and open it from the file.
 You can also specify the name of a browser to use a non-default browser. Please refer to [webbrowser documentation](https://docs.python.org/3/library/webbrowser.html) for the complete list of predefined browsers.
 This library is especially useful for quickly visualizing and testing HTML content in a web browser environment.
 
 ## Installation
 
-You can install `html_renderer` using pip:
+You can install `render_html` using pip:
 
-pip install html-renderer
+pip install render-html
 
 NOTE: the library requires Python 3.10 or newer
 
 ## Usage
 
 ```python
-from html_renderer import render_in_browser as ren
+from render_html import render_in_browser as ren
 import requests
 
 # Making a request with the requests library
